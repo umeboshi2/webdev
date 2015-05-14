@@ -15,7 +15,7 @@ fi
 
 if ! [ -f /etc/apt/sources.list.d/salt.list ]; then
     echo "adding sources list for salt"
-    echo "deb http://debian.saltstack.com/debian wheezy-saltstack main" \
+    echo "deb http://debian.saltstack.com/debian jessie-saltstack main" \
 	> /etc/apt/sources.list.d/salt.list
 fi
 

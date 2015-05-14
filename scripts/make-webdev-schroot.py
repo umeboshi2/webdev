@@ -10,7 +10,7 @@ parser = OptionParser()
 parser.add_option('--bootstrap-file', type='string', action='store',
                   dest='bootstrap_file', default=bootstrap_file_default)
 parser.add_option('--dist', type='string', action='store',
-                  dest='dist', default='wheezy')
+                  dest='dist', default='jessie')
 parser.add_option('--arch', type='string', action='store',
                   dest='arch', default='')
 parser.add_option('--proxy', type='string', action='store',
@@ -39,6 +39,8 @@ def check_requirements():
 
 def make_root_filesystem(dest, dist=opts.dist):
     cmd = ['debootstrap', dist, dest]
+    if opts.proxy:
+        cmd = ['/usr/bin/env', 'http_proxy=%s' % opts.proxy] + cmd
     retval = subprocess.check_call(cmd)
 
 def bootstrap_salt(dest):
@@ -73,8 +75,8 @@ def provision_webdev(dest):
     subprocess.check_call(cmd)
     
 def main(dest): 
-    if opts.proxy:
-        os.environ['http_proxy'] = opts.proxy
+    #if opts.proxy:
+    #    os.environ['http_proxy'] = opts.proxy
     if os.getuid():
         raise RuntimeError, "This script needs root permissions."
     check_requirements()
