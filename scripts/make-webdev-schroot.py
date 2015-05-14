@@ -42,6 +42,10 @@ def make_root_filesystem(dest, dist=opts.dist):
     if opts.proxy:
         cmd = ['/usr/bin/env', 'http_proxy=%s' % opts.proxy] + cmd
     retval = subprocess.check_call(cmd)
+    if opts.proxy:
+        filename = os.path.join(dest, 'etc/apt/apt.conf.d/02proxy')
+        with file(filename, 'w') as aconf:
+            aconf.write('Acquire::http::Proxy "%s";\n' % opts.proxy)
 
 def bootstrap_salt(dest):
     prefix = ['schroot', '-c', opts.chroot, '-u', 'root']
@@ -69,8 +73,8 @@ def install_minion_config(dest):
     
 def provision_webdev(dest):
     prefix = ['schroot', '-c', opts.chroot, '-u', 'root']
-    if opts.proxy:
-        prefix += ['/usr/bin/env', 'http_proxy=%s' % opts.proxy]
+    #if opts.proxy:
+    #    prefix += ['/usr/bin/env', 'http_proxy=%s' % opts.proxy]
     cmd = prefix + ['salt-call', 'state.highstate']
     subprocess.check_call(cmd)
     
