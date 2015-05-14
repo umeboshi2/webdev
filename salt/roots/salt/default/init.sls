@@ -19,15 +19,12 @@ emacs:
     - name: editor
     - path: /usr/bin/{{ emacs }}
 
-screen:
-  pkg:
-    - installed
-
 basic-tools:
   pkg.installed:
     - pkgs:
       - iotop
       - htop
+      - tmux
 
 # some of this is needed for
 # building the nodejs package
