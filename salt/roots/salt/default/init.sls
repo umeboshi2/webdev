@@ -25,7 +25,8 @@ basic-tools:
       - iotop
       - htop
       - tmux
-
+      - aptitude
+      
 # some of this is needed for
 # building the nodejs package
 devpackages:
@@ -39,4 +40,17 @@ devpackages:
       - zlib1g-dev
       - rubygems
       - ruby-dev
+
+      # python packages
+      - python-dev
+      - python-requests
+      - virtualenvwrapper
+      - libpq-dev
+      - libpng12-dev
+      - libfreetype6-dev
+      - libxml2-dev
+      - libxslt1-dev
+      - libssl-dev
+      - libjpeg-dev
+      - liblcms2-dev
       

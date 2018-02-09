@@ -10,11 +10,12 @@ parser = OptionParser()
 parser.add_option('--bootstrap-file', type='string', action='store',
                   dest='bootstrap_file', default=bootstrap_file_default)
 parser.add_option('--dist', type='string', action='store',
-                  dest='dist', default='jessie')
+                  dest='dist', default='sid')
 parser.add_option('--arch', type='string', action='store',
                   dest='arch', default='')
 parser.add_option('--proxy', type='string', action='store',
                   dest='proxy', default='')
+# name of chroot in schroot.conf
 parser.add_option('--chroot', type='string', action='store',
                   dest='chroot', default='')
 

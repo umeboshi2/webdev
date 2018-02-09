@@ -55,3 +55,6 @@ npm-webdev-packages:
       - http-server
       - js2coffee
       - express
+      - browserify
+      - gulp-cli
+      
